@@ -1,5 +1,6 @@
-import styles from './App.module.scss';
+import RouterApp from '~/router/routerApp';
 
-export function App() {
-  return <div className={styles.App}>App</div>;
+function App() {
+  return <RouterApp />;
 }
+export default App;

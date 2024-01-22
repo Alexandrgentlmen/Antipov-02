@@ -1,0 +1,40 @@
+.Container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  @media (max-width: (676px)) {
+    min-width: 580px;
+  }
+
+  @media (max-width: (580px)) {
+    min-width: 480px;
+  }
+
+  @media (max-width: (480px)) {
+    min-width: 380px;
+  }
+
+  @media (max-width: (380px)) {
+    min-width: 320px;
+  }
+}
+
+.spacearound {
+  justify-content: space-around;
+}
+
+.spacebetween {
+  justify-content: space-between;
+}
+
+.flexstart {
+  justify-content: flex-start;
+}
+
+.flexend {
+  justify-content: flex-end;
+}

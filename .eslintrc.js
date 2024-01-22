@@ -33,7 +33,7 @@ module.exports = {
     'import/resolver': 'webpack',
   },
   rules: {
-    'no-console': types.WARN,
+    'no-console': 'off',
     'no-template-curly-in-string': types.WARN,
     'require-atomic-updates': types.ERROR,
     'array-callback-return': types.ERROR,

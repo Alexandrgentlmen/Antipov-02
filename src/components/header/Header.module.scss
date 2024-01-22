@@ -1,0 +1,93 @@
+.Header {
+  background-color: #512689;
+  color: #fff;
+}
+
+// .headerContainer {
+//   @media (max-width: (1439px)) {
+//     // от 1024-1440px
+//     max-width: 1004px;
+//     max-width: 1280px;
+//   }
+
+//   @media (max-width: (1023px)) {
+//     // от 768-1024px
+//     max-width: 747px;
+//   }
+
+//   @media (max-width: (767px)) {
+//     // от 576-768px
+//     flex-direction: column-reverse;
+//     max-width: 555px;
+//   }
+
+//   @media (max-width: (575px)) {
+//     // от 320-576px
+
+//     padding-top: 24px;
+//     max-width: 324px;
+//   }
+// }
+
+.aboutTeam {
+  width: 79.5%;
+  padding-bottom: 40px;
+
+  @media (max-width: (767px)) {
+    width: 100%;
+  }
+
+  @media (max-width: (575px)) {
+    margin-top: 40px;
+    padding-bottom: 48px;
+  }
+}
+
+.title {
+  margin: 0;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 400;
+
+  @media (max-width: (1023px)) {
+
+    font-size: 60px;
+  }
+
+  @media (max-width: (767px)) {
+    margin-top: 0;
+    font-size: 55px;
+  }
+
+  @media (max-width: (575px)) {
+    font-size: 36px;
+  }
+}
+
+.text {
+  text-align: center;
+  padding: 0 95px;
+  font-size: 20px;
+  font-weight: 400;
+
+  @media (max-width: (1439px)) {
+    padding: 0 25px;
+    font-size: 18px;
+  }
+
+  @media (max-width: (1023px)) {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  @media (max-width: (767px)) {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  @media (max-width: (575px)) {
+    padding: 4px 1px 0 1px;
+    font-size: 16px;
+  }
+}

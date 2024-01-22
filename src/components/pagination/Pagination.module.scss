@@ -1,0 +1,29 @@
+.Pagination {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.Pagination .pagBtn {
+  cursor: pointer;
+  background-color: #eee;
+  font-size: 20px;
+  line-height: 30px;
+  border: 1px solid #fff;
+  border-radius: 4px;
+  padding: 5px 12px;
+  margin-left: 4px;
+  transition: all 0.3s ease-in-out;
+}
+
+.Pagination .pagBtn.active {
+  color: #fff;
+  background-color: #512689;
+}
+
+.Pagination .pagBtn:hover {
+  color: #fff;
+  background-color: #512689;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.2);
+}

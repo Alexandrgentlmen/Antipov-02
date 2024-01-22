@@ -1,0 +1,101 @@
+.Teammate {
+  padding: 34px;
+  width: 62%;
+
+  @media (max-width: (1023px)) {
+    padding: 0;
+  }
+
+  @media (max-width: (575px)) {
+    padding: 0;
+    width: 100%;
+  }
+}
+
+.textAbout {
+  margin-bottom: 27px;
+  font-size: 16px;
+  color: #151317;
+  line-height: 21px;
+
+  @media (max-width: (575px)) {
+    line-height: 136.19%;
+    margin-bottom: 25px;
+  }
+}
+
+.container {
+  display: flex;
+  margin: 0 auto;
+  padding: 0 75px;
+  max-width: 1280px;
+
+
+  @media (max-width: (1023px)) {
+    // от 768-1024px
+    max-width: 747px;
+    padding: 0 20px;
+  }
+
+  @media (max-width: (767px)) {
+    // от 576-768px
+    padding: 0 10px;
+    max-width: 555px;
+  }
+
+  @media (max-width: (575px)) {
+    flex-direction: column-reverse;
+    max-width: 340px;
+    padding: 0;
+
+  }
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 50px 33px 44px 123px;
+
+  @media (max-width: (575px)) {
+    padding: 0;
+    padding: 35px 30px 20px 30px;
+  }
+}
+
+.telLink {
+  position: relative;
+  margin-bottom: 30px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #151317;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    top: 0;
+    left: -32px;
+    background-image: url('../../assets/images/telefone.png');
+  }
+}
+
+
+
+.emailLink {
+  position: relative;
+  text-decoration: none;
+  font-size: 16px;
+  color: #151317;
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: 24px;
+    height: 24px;
+    top: 0;
+    left: -32px;
+    background-image: url('../../assets/images/mail.png');
+  }
+}

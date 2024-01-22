@@ -1,0 +1,76 @@
+.UserCard {}
+
+.avatar {
+  width: 124px;
+  height: 123px;
+  vertical-align: middle;
+  display: inline-block;
+  border-radius: 123px;
+  overflow: hidden;
+  object-fit: cover;
+  align-self: center;
+}
+
+.container {
+  height: 305px;
+}
+
+.name {
+  text-decoration: none;
+  margin: 0;
+  margin-top: 17px;
+  font-size: 20px;
+  line-height: 23px;
+  text-align: center;
+  color: #151317;
+  padding-bottom: 62px;
+}
+
+.card {
+  align-self: center;
+  display: block;
+  text-decoration: none;
+}
+
+.button {
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: none;
+}
+
+.item {
+  padding-top: 33px;
+  width: 23.5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  box-shadow: 0px 0.996045px 3.98418px rgba(51, 51, 51, 0.15);
+
+  @media (max-width: (1439px)) {
+    width: 48.6%;
+  }
+
+  @media (max-width: (1023px)) {
+    // от 768-1024px
+    width: 31%;
+  }
+
+  @media (max-width: (767px)) {
+    // от 576-768px
+    width: 29.5%;
+  }
+
+  @media (max-width: (575px)) {
+    width: 100%;
+  }
+}
+
+.heart {
+  align-self: flex-end;
+  padding-right: 20px;
+  padding-bottom: 20px;
+}

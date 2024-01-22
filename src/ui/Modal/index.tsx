@@ -6,10 +6,11 @@ import styles from './Modal.module.scss';
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  infoText: string | null;
   children?: ReactNode;
 }
 
-export function Modal({ children, isOpen, onClose }: ModalProps) {
+function Modal({ children, isOpen, onClose }: ModalProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -35,9 +36,10 @@ export function Modal({ children, isOpen, onClose }: ModalProps) {
         }}
       >
         <div className={styles.Modal} onClick={onClose} ref={ref}>
-          {children}
+          {children} || infoText
         </div>
       </CSSTransition>
     </Portal>
   );
 }
+export { Modal };
