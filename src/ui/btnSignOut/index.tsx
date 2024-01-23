@@ -1,14 +1,15 @@
 import classNames from 'classnames';
 import styles from './BtnSignOut.module.scss';
 
-const BtnSignOut = ({ logout }) => {
+interface BtnSignOutProps {
+  logout: () => void;
+}
+
+const BtnSignOut = ({ logout }: BtnSignOutProps) => {
   return (
     <button
       className={classNames(styles.BtnSignOut, styles.btnRight)}
-      onClick={() => {
-        localStorage.removeItem('token');
-        logout;
-      }}
+      onClick={logout}
     >
       Выход
     </button>

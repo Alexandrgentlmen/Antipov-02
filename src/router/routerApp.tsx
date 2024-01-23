@@ -20,8 +20,8 @@ function RouterApp() {
             </RequireAuth>
           }
         />
-        <Route path={'*'} element={<PageNotFound />} />
         <Route path={ROUTES.LOGIN_PAGE} element={<SignUp />} />
+        <Route path={'*'} element={<PageNotFound />} />
       </Routes>
     </>
   );

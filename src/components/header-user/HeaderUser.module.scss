@@ -1,6 +1,7 @@
 .HeaderUser {
   background-color: #512689;
   color: #fff;
+
 }
 
 .avatar {
@@ -62,11 +63,14 @@
   position: relative;
   width: 70%;
 
+  @media (max-width: (1023px)) {
+    width: 60%;
+  }
+
+
   @media (max-width: (767px)) {
     // от 576-768px
-    width: 78%;
-    width: 100%;
+    width: 57%;
     margin-top: 39px;
-
   }
 }

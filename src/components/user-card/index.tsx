@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, generatePath } from 'react-router-dom';
 import classNames from 'classnames';
 import styles from './UserCard.module.scss';
 import { ROUTES } from '~/router';
@@ -17,7 +17,7 @@ function UserCard({ avatarSrc, name, id }: IUserCard) {
     <li className={styles.item} key={id}>
       <Link
         className={classNames(styles.button, styles.card)}
-        to={ROUTES.USER}
+        to={generatePath(ROUTES.USER, { id: id.toString() })}
         state={{ location }}
       >
         <img className={styles.avatar} src={avatarSrc} alt="Avatar" />

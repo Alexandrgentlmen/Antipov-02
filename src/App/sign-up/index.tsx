@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
 import { useLocation, useNavigate } from 'react-router';
 import styles from './SignUp.module.scss';
 import { authSlice } from '~/store/authSlice';
+import { useAppDispatch } from '~/store/hooks';
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const location = useLocation();
-  const token = localStorage.getItem('token');
+
   const {
     register,
     formState: { errors, isValid },
@@ -25,30 +24,29 @@ const SignUp = () => {
       cpassword: 'pistol',
     },
   });
-  const fromPage =
-    location.state?.from?.pathname || location.state?.location?.pathname;
-
   interface IDataSubmit {
-    name: string | null;
-    email: string | null;
-    password: string | null;
+    name: string;
+    email: string;
+    password: string;
   }
   const onSubmit = (data: IDataSubmit) => {
-    if (!token) {
-      const name = data.name;
-      const email = data.email;
-      const password = data.password;
-      dispatch(authSlice.thunks.authUserThunk({ name, email, password }));
-      navigate(fromPage, { state: 'ok' });
-    }
+    const fromPage =
+      location.state?.from?.pathname || location.state?.location?.pathname;
 
-    reset();
+    const name = data.name;
+    const email = data.email;
+    const password = data.password;
+    dispatch(
+      authSlice.thunks.authUserThunk({
+        registrationPayload: { name, email, password },
+        successCallback: () => {
+          navigate(fromPage, { state: 'ok' });
+
+          reset();
+        },
+      }),
+    );
   };
-  // console.log('location', location);
-  // console.log(fromPage);
-  useEffect(() => {
-    navigate(fromPage);
-  }, [token, navigate, fromPage]);
 
   return (
     <div className={styles.container}>

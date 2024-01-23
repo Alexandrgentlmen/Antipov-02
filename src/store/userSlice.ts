@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-import { UsersListResItem, UsersListResponse } from '~/api/users.types';
+import { UserResponse, UsersListResponse } from '~/api/users.types';
 import usersApi from '~/services/usersApi';
 
 const SLICE_NAME = 'users';
@@ -15,7 +15,7 @@ interface IS {
   };
   fetchUserRequest: {
     isLoading: boolean;
-    data: null | UsersListResItem;
+    data: null | UserResponse;
     error: null | unknown;
   };
 }
@@ -56,6 +56,13 @@ const { actions, reducer } = createSlice({
         data: action.payload,
       },
     }),
+    clearUser: (state) => {
+      state.fetchUserRequest = {
+        isLoading: false,
+        data: null,
+        error: null,
+      };
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -111,15 +118,16 @@ const fetchUsersListThunk = createAsyncThunk(
   },
 );
 
+interface fetchUserThunkPayload {
+  id: string;
+}
+
 const fetchUserThunk = createAsyncThunk(
   `{SLICE_NAME}/fetchUser`,
-  async function ({ id }: number, { rejectWithValue }) {
+  async function ({ id }: fetchUserThunkPayload, { rejectWithValue }) {
     try {
-      await usersApi.fetchUser(id).then((res) => {
-        const profile = res;
-        console.log('fetchUserThunk', profile);
-        return res;
-      });
+      const res = await usersApi.fetchUser(id);
+      return res;
     } catch (error: unknown) {
       return rejectWithValue((error as Error).message);
     }

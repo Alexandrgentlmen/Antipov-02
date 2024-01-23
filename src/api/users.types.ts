@@ -19,3 +19,22 @@ export interface Support {
   url: string;
   text: string;
 }
+
+//userResponse
+export interface UserResponse {
+  data: UserResponseData;
+  support: Support;
+}
+
+export interface UserResponseData {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  avatar: string;
+}
+
+export interface Support {
+  url: string;
+  text: string;
+}

@@ -24,33 +24,6 @@
   }
 }
 
-.container {
-  display: flex;
-  margin: 0 auto;
-  padding: 0 75px;
-  max-width: 1280px;
-
-
-  @media (max-width: (1023px)) {
-    // от 768-1024px
-    max-width: 747px;
-    padding: 0 20px;
-  }
-
-  @media (max-width: (767px)) {
-    // от 576-768px
-    padding: 0 10px;
-    max-width: 555px;
-  }
-
-  @media (max-width: (575px)) {
-    flex-direction: column-reverse;
-    max-width: 340px;
-    padding: 0;
-
-  }
-}
-
 .address {
   display: flex;
   flex-direction: column;

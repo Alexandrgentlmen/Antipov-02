@@ -4,8 +4,14 @@ const login = async (email, password) => {
   return axiosInstance.post('/login', { email, password });
 };
 
-const registration = async (name, email, password) => {
-  return axiosInstance.post('/register', { name, email, password });
+export interface IRegPayload {
+  name: string;
+  email: string;
+  password: string;
+}
+
+const registration = async (payload: IRegPayload) => {
+  return axiosInstance.post('/register', payload);
 };
 
 const logout = async () => {

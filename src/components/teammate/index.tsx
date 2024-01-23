@@ -1,6 +1,10 @@
 import styles from './Teammate.module.scss';
 
-function Teammate({ profile }) {
+interface TeammateProps {
+  email: string;
+}
+
+function Teammate({ email }: TeammateProps) {
   return (
     <>
       <div className={styles.Teammate}>
@@ -34,7 +38,7 @@ function Teammate({ profile }) {
           +7 (954) 333-44-55
         </a>
         <a href="mailto:sykfafkar@gmail.com" className={styles.emailLink}>
-          {profile.email}
+          {email}
         </a>
       </div>
     </>

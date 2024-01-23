@@ -1,29 +1,35 @@
 import { memo, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
 import { Bars } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import styles from './UserList.module.scss';
+import { getSearchPArams } from './userList.helpers';
 import UserCard from '~/components/user-card';
 import Pagination from '~/components/pagination';
 import Header from '~/components/header';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import { usersSlice } from '~/store/userSlice';
 import { UsersListResItem } from '~/api/users.types';
-import { Modal } from '~/ui/Modal';
+import { authSlice } from '~/store/authSlice';
+import ErrorViewer from '~/components/error-viewer';
 
 function UserList() {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const { page } = getSearchPArams(searchParams);
   useEffect(() => {
-    dispatch(usersSlice.thunks.fetchUsersListThunk({ page: 1 }));
-  }, []);
+    dispatch(usersSlice.thunks.fetchUsersListThunk({ page }));
+  }, [page]);
   const callbacks = {
     handlePag: useCallback(
       (page: number) => {
-        dispatch(usersSlice.thunks.fetchUsersListThunk({ page }));
+        setSearchParams({ page: page.toString() });
       },
       [dispatch],
     ),
+    logoutUser: useCallback(() => {
+      dispatch(authSlice.thunks.logoutThunk());
+    }, []),
   };
 
   const usersRequest = useAppSelector(
@@ -32,13 +38,7 @@ function UserList() {
 
   return (
     <>
-      <Modal
-        isOpen={!!usersRequest.error}
-        onClose={() => {
-          // dispatch(usersSlice.reducer.resetErrorUsersList());
-          navigate('/');
-        }}
-      />
+      {usersRequest.error && <ErrorViewer error={usersRequest.error} />}
       <Bars
         height="80"
         width="80"
@@ -48,7 +48,7 @@ function UserList() {
         wrapperClass={styles.wrapperSpinner}
         visible={usersRequest.isLoading}
       />
-      <Header />
+      <Header logout={callbacks.logoutUser} />
       {usersRequest.data && (
         <div className={styles.UserList}>
           <ul className={classNames(styles.ourCompany, styles.listReset)}>
@@ -57,6 +57,7 @@ function UserList() {
                 key={user.id}
                 name={`${user.first_name} ${user.last_name}`}
                 avatarSrc={user.avatar}
+                id={user.id}
               />
             ))}
           </ul>

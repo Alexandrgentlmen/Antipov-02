@@ -8,7 +8,7 @@ const BtnReturn = () => {
   return (
     <button
       className={classNames(styles.btnReturn, styles.btnLeft)}
-      onClick={navigate(ROUTES.USERS_LIST)}
+      onClick={() => navigate(ROUTES.USERS_LIST)}
     >
       Назад
     </button>

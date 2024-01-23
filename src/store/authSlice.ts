@@ -1,30 +1,31 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 
-import authApi from '~/services/authApi';
+import authApi, { IRegPayload } from '~/services/authApi';
 
 const SLICE_NAME = 'auth';
 
 interface IProfile {
   name: string | null;
   email: string | null;
-  password: string | null;
   likedUsers: [];
 }
+
 interface IRegistration {
   id: number | null;
   token: null | string;
 }
-interface IAuthUser {
+interface IInitialState {
   regData: IRegistration;
   user: IProfile;
   isLoading: boolean;
   error: null;
+  isAuth: boolean;
 }
 interface FetchAuthUserPayload {
   id: number;
 }
 
-const initialState: IAuthUser = {
+const initialState: IInitialState = {
   regData: {
     id: null,
     token: null,
@@ -32,18 +33,18 @@ const initialState: IAuthUser = {
   user: {
     name: null,
     email: null,
-    password: null,
     likedUsers: [],
   },
   isLoading: false,
   error: null,
+  isAuth: false,
 };
 
 const { actions, reducer } = createSlice({
   initialState,
   name: `${SLICE_NAME}/profile`,
   reducers: {
-    logout: () => ({ ...initialState }),
+    clear: () => initialState,
     setDataProfile: (state, action) => ({
       ...state,
       user: {
@@ -53,6 +54,9 @@ const { actions, reducer } = createSlice({
         password: action.payload.password,
       },
     }),
+    setAuth: (state, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -70,21 +74,42 @@ const { actions, reducer } = createSlice({
       });
   },
 });
+interface IAuthUserThunkPayload {
+  registrationPayload: IRegPayload;
+  successCallback: () => void;
+}
 
 export const authUserThunk = createAsyncThunk(
   `{SLICE_NAME}/authUser`,
   async function (
-    { name, email, password }: IProfile,
+    { registrationPayload, successCallback }: IAuthUserThunkPayload,
     { rejectWithValue, dispatch },
   ) {
     try {
-      return authApi.registration(name, email, password).then((res) => {
-        console.log('registration', res);
-        const token = res.data.token;
-        dispatch(actions.setDataProfile({ name, email, password }));
-        localStorage.setItem('token', token);
-        return res.data;
-      });
+      const res = await authApi.registration(registrationPayload);
+      const token = res.data.token;
+      dispatch(
+        actions.setDataProfile({
+          name: registrationPayload.name,
+          email: registrationPayload.email,
+        }),
+      );
+      localStorage.setItem('token', token);
+      dispatch(actions.setAuth(true));
+      successCallback();
+      return res.data;
+    } catch (error) {
+      return rejectWithValue((error as Error).message);
+    }
+  },
+);
+
+export const logoutThunk = createAsyncThunk(
+  `${SLICE_NAME}/logoutThunk`,
+  async (_, { rejectWithValue, dispatch }) => {
+    try {
+      localStorage.removeItem('token');
+      dispatch(actions.clear());
     } catch (error) {
       return rejectWithValue((error as Error).message);
     }
@@ -94,5 +119,5 @@ export const authUserThunk = createAsyncThunk(
 export const authSlice = {
   actions,
   reducer,
-  thunks: { authUserThunk },
+  thunks: { authUserThunk, logoutThunk },
 } as const;

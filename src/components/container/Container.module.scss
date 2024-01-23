@@ -12,6 +12,7 @@
 
   @media (max-width: (580px)) {
     min-width: 480px;
+    flex-direction: column;
   }
 
   @media (max-width: (480px)) {

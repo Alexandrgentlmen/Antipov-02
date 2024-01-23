@@ -5,15 +5,14 @@ import styles from './Header.module.scss';
 import BtnSignIn from './../../ui/btnSignIn';
 import BtnReturn from './../../ui/btnReturn';
 import BtnSignOut from '~/ui/btnSignOut';
+import { useAppSelector } from '~/store/hooks';
 
-function Header() {
-  const token = localStorage.getItem('token');
+interface HeaderProps {
+  logout: () => void;
+}
 
-  const callbacks = {
-    onAdd: (e) => console.log('Выйти/Вход'),
-    // onAdd: (e) => props.onAdd(props.item._id)
-  };
-
+function Header({ logout }: HeaderProps) {
+  const isAuth = useAppSelector((state) => state.auth.isAuth);
   return (
     <header className={classNames(styles.Header)}>
       <Container types={'spacearound'}>
@@ -26,7 +25,7 @@ function Header() {
             самых сложных ситуаций.
           </p>
         </div>
-        {token ? <BtnSignOut /> : <BtnSignIn />}
+        {isAuth ? <BtnSignOut logout={logout} /> : <BtnSignIn />}
       </Container>
     </header>
   );
