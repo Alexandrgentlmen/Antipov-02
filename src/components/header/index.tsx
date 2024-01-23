@@ -1,30 +1,25 @@
 import { memo } from 'react';
-import classNames from 'classnames';
-import Container from '../container';
 import styles from './Header.module.scss';
-import BtnSignIn from './../../ui/btnSignIn';
-import BtnReturn from './../../ui/btnReturn';
-import BtnSignOut from '~/ui/btnSignOut';
+import Container from '~/components/container';
+import BtnReturn from '~/ui/btnReturn';
 import { useAppSelector } from '~/store/hooks';
+import BtnSignOut from '~/ui/btnSignOut';
+import BtnSignIn from '~/ui/btnSignIn';
 
 interface HeaderProps {
   logout: () => void;
+  onBack?: () => void;
+  children?: React.ReactNode;
+  types: 'spacearound' | 'spacebetween' | 'flexstart' | 'flexend' | '';
 }
 
-function Header({ logout }: HeaderProps) {
+function Header({ logout, onBack, types, children }: HeaderProps) {
   const isAuth = useAppSelector((state) => state.auth.isAuth);
   return (
-    <header className={classNames(styles.Header)}>
-      <Container types={'spacearound'}>
-        <BtnReturn />
-        <div className={classNames(styles.aboutTeam)}>
-          <h1 className={styles.title}>Наша команда</h1>
-          <p className={styles.text}>
-            Это опытные специалисты, хорошо разбирающиеся во всех задачах,
-            которые ложатся на их плечи, и умеющие находить выход из любых, даже
-            самых сложных ситуаций.
-          </p>
-        </div>
+    <header className={styles.Header}>
+      <Container types={types}>
+        {onBack && <BtnReturn onBack={onBack} />}
+        {children}
         {isAuth ? <BtnSignOut logout={logout} /> : <BtnSignIn />}
       </Container>
     </header>

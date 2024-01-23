@@ -1,14 +1,15 @@
 import classNames from 'classnames';
-import { useNavigate } from 'react-router-dom';
 import styles from './BtnReturn.module.scss';
-import { ROUTES } from '~/router';
 
-const BtnReturn = () => {
-  const navigate = useNavigate();
+interface BtnReturn {
+  onBack: () => void;
+}
+
+const BtnReturn = ({ onBack }: BtnReturn) => {
   return (
     <button
       className={classNames(styles.btnReturn, styles.btnLeft)}
-      onClick={() => navigate(ROUTES.USERS_LIST)}
+      onClick={onBack}
     >
       Назад
     </button>

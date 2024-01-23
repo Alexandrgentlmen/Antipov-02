@@ -1,3 +1,4 @@
+//usersListResponse
 export interface UsersListResponse {
   page: number;
   per_page: number;

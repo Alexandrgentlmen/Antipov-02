@@ -71,3 +71,68 @@
     width: 100%;
   }
 }
+
+// Header Styles
+
+.aboutTeam {
+  width: 79.5%;
+  padding-bottom: 40px;
+
+  @media (max-width: (767px)) {
+    width: 100%;
+  }
+
+  @media (max-width: (575px)) {
+    margin-top: 40px;
+    padding-bottom: 48px;
+  }
+}
+
+.title {
+  margin: 0;
+  padding-top: 30px;
+  text-align: center;
+  font-size: 64px;
+  font-weight: 400;
+
+  @media (max-width: (1023px)) {
+
+    font-size: 60px;
+  }
+
+  @media (max-width: (767px)) {
+    margin-top: 0;
+    font-size: 55px;
+  }
+
+  @media (max-width: (575px)) {
+    font-size: 36px;
+  }
+}
+
+.text {
+  text-align: center;
+  padding: 0 95px;
+  font-size: 20px;
+  font-weight: 400;
+
+  @media (max-width: (1439px)) {
+    padding: 0 25px;
+    font-size: 18px;
+  }
+
+  @media (max-width: (1023px)) {
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  @media (max-width: (767px)) {
+    padding: 0 10px;
+    font-size: 12px;
+  }
+
+  @media (max-width: (575px)) {
+    padding: 4px 1px 0 1px;
+    font-size: 16px;
+  }
+}

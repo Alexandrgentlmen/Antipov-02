@@ -1,9 +1,9 @@
 import { memo, useCallback, useEffect } from 'react';
 import classNames from 'classnames';
 import { Bars } from 'react-loader-spinner';
-import { useSearchParams } from 'react-router-dom';
+import { generatePath, useSearchParams } from 'react-router-dom';
 import styles from './UserList.module.scss';
-import { getSearchPArams } from './userList.helpers';
+import { getSearchParams } from './userList.helpers';
 import UserCard from '~/components/user-card';
 import Pagination from '~/components/pagination';
 import Header from '~/components/header';
@@ -12,21 +12,20 @@ import { usersSlice } from '~/store/userSlice';
 import { UsersListResItem } from '~/api/users.types';
 import { authSlice } from '~/store/authSlice';
 import ErrorViewer from '~/components/error-viewer';
+import { ROUTES } from '~/router';
 
 function UserList() {
   const dispatch = useAppDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
-  const { page } = getSearchPArams(searchParams);
+  const { page } = getSearchParams(searchParams);
   useEffect(() => {
     dispatch(usersSlice.thunks.fetchUsersListThunk({ page }));
   }, [page]);
+
   const callbacks = {
-    handlePag: useCallback(
-      (page: number) => {
-        setSearchParams({ page: page.toString() });
-      },
-      [dispatch],
-    ),
+    handlePag: useCallback((page: number) => {
+      setSearchParams({ page: page.toString() });
+    }, []),
     logoutUser: useCallback(() => {
       dispatch(authSlice.thunks.logoutThunk());
     }, []),
@@ -48,7 +47,16 @@ function UserList() {
         wrapperClass={styles.wrapperSpinner}
         visible={usersRequest.isLoading}
       />
-      <Header logout={callbacks.logoutUser} />
+      <Header types="spacearound" logout={callbacks.logoutUser}>
+        <div className={classNames(styles.aboutTeam)}>
+          <h1 className={styles.title}>Наша команда</h1>
+          <p className={styles.text}>
+            Это опытные специалисты, хорошо разбирающиеся во всех задачах,
+            которые ложатся на их плечи, и умеющие находить выход из любых, даже
+            самых сложных ситуаций.
+          </p>
+        </div>
+      </Header>
       {usersRequest.data && (
         <div className={styles.UserList}>
           <ul className={classNames(styles.ourCompany, styles.listReset)}>
@@ -56,8 +64,9 @@ function UserList() {
               <UserCard
                 key={user.id}
                 name={`${user.first_name} ${user.last_name}`}
-                avatarSrc={user.avatar}
                 id={user.id}
+                avatarSrc={user.avatar}
+                link={generatePath(ROUTES.USER, { id: user.id.toString() })}
               />
             ))}
           </ul>

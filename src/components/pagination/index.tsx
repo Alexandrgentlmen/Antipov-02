@@ -18,7 +18,6 @@ function Pagination({ onPag, maxPage, currentPage }: IPagProps) {
         .map(() => getUUID()),
     [maxPage],
   );
-  // const dispatch = useDispatch();
   const checkProfile = () => {
     // dispatch(fetchUser({ id }));
   };

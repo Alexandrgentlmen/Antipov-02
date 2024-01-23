@@ -10,7 +10,7 @@ const fetchUsersList = async (page = 1) => {
   return res.data;
 };
 
-const fetchUser = async (id: string) => {
+const fetchUser = async (id: number) => {
   const res = await axiosInstance.request<UserResponseData>({
     url: `/users`,
     params: { id },

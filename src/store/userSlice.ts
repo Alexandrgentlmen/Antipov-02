@@ -119,7 +119,7 @@ const fetchUsersListThunk = createAsyncThunk(
 );
 
 interface fetchUserThunkPayload {
-  id: string;
+  id: number;
 }
 
 const fetchUserThunk = createAsyncThunk(

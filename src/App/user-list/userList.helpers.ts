@@ -1,4 +1,4 @@
-export const getSearchPArams = (searchParams: URLSearchParams) => {
+export const getSearchParams = (searchParams: URLSearchParams) => {
   const pageFromSearchParams = searchParams.get('page');
   let page = 1;
   if (pageFromSearchParams !== null) {
