@@ -18,7 +18,7 @@ const SignUp = () => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      username: 'sasha',
+      name: 'sasha',
       email: 'eve.holt@reqres.in',
       password: 'pistol',
       cpassword: 'pistol',
@@ -28,6 +28,7 @@ const SignUp = () => {
     name: string;
     email: string;
     password: string;
+    cpassword?: string;
   }
   const onSubmit = (data: IDataSubmit) => {
     console.log('In Submit SignUp location', location);
