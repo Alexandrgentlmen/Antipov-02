@@ -15,7 +15,6 @@ const fetchUser = async (id: number) => {
     url: `/users`,
     params: { id },
   });
-  console.log(res);
   return res.data;
 };
 

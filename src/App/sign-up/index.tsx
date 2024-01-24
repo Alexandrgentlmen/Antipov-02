@@ -8,7 +8,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const location = useLocation();
-  console.log('before SignUp location', location);
+
   const {
     register,
     formState: { errors, isValid },
@@ -31,7 +31,6 @@ const SignUp = () => {
     cpassword?: string;
   }
   const onSubmit = (data: IDataSubmit) => {
-    console.log('In Submit SignUp location', location);
     const fromPage =
       location.state?.from?.pathname ||
       location.state?.location?.pathname ||

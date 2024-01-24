@@ -126,7 +126,6 @@ const fetchUserThunk = createAsyncThunk(
   async function ({ id }: fetchUserThunkPayload, { rejectWithValue }) {
     try {
       const res = await usersApi.fetchUser(id);
-      console.log('RESPONSE', res);
       return res;
     } catch (error: unknown) {
       return rejectWithValue((error as Error).message);
