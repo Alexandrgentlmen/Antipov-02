@@ -29,13 +29,11 @@ function UserAbout() {
     };
   }, [userId]);
 
-  console.log('AFTER REGISTRATION   location', location);
   // const fromPage =
   //   location.state?.from?.pathname || location.state?.location?.pathname;
   const fromPage =
     location.state?.location.state?.from?.state?.location?.pathname ||
     location.state?.location?.pathname;
-  console.log('AFTER REGISTRATION   fromPage', fromPage);
 
   const fullName = userRequest.data
     ? `${userRequest.data.data.first_name} ${userRequest.data.data.last_name}`

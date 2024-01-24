@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-
 import { UserResponse, UsersListResponse } from '~/api/users.types';
 import usersApi from '~/services/usersApi';
 

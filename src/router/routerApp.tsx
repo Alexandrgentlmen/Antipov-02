@@ -2,9 +2,9 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { memo } from 'react';
 import { ROUTES } from './routerPaths';
 import { RequireAuth } from '~/hoc/RequireAuth';
-import UserList from '~/app/user-list';
-import UserAbout from '~/app/user-about';
-import { SignUp } from '~/app/sign-up';
+import UserList from '~/App/user-list';
+import UserAbout from '~/App/user-about';
+import { SignUp } from '~/App/sign-up';
 import PageNotFound from '~/components/page-not-found';
 
 function RouterApp() {
