@@ -76,7 +76,7 @@ const SignUp = () => {
           <div className={styles.error}>
             {errors?.name && <p>{errors?.name?.message || 'Ошибка!'}</p>}
           </div>
-          <label className={styles.labelText} htmlFor="mail" validate="true">
+          <label className={styles.labelText} htmlFor="mail">
             Электронная почта
           </label>
           <input
