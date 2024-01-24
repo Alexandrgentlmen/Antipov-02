@@ -65,7 +65,7 @@ const SignUp = () => {
             type="text"
             id="name"
             placeholder="Артур"
-            {...register('username', {
+            {...register('name', {
               required: 'Введите имя обязательно!',
               minLength: {
                 value: 5,
@@ -74,9 +74,7 @@ const SignUp = () => {
             })}
           />
           <div className={styles.error}>
-            {errors?.username && (
-              <p>{errors?.username?.message || 'Ошибка!'}</p>
-            )}
+            {errors?.name && <p>{errors?.name?.message || 'Ошибка!'}</p>}
           </div>
           <label className={styles.labelText} htmlFor="mail" validate="true">
             Электронная почта
