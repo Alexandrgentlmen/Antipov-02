@@ -18,7 +18,7 @@ interface IInitialState {
   regData: IRegistration;
   user: IProfile;
   isLoading: boolean;
-  error: null;
+  error: null | unknown;
   isAuth: boolean;
 }
 interface FetchAuthUserPayload {

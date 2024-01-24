@@ -9,7 +9,7 @@ interface IS {
   fetchUsersListRequest: {
     isLoading: boolean;
     data: null | UsersListResponse;
-    error: null | Error;
+    error: null | unknown;
     total_pages: null | number;
     page: null | number;
   };
