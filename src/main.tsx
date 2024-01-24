@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import '~/styles/index.scss';
 import 'normalize.css';
 import { store } from './store';
-import App from './app';
+import App from './App/index';
 
 const container = document.getElementById('root');
 

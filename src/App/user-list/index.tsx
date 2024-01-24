@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { Bars } from 'react-loader-spinner';
 import { generatePath, useSearchParams } from 'react-router-dom';
 import styles from './UserList.module.scss';
-import { getSearchParams } from './userList.helpers';
+import { getSearchParams } from '~/App/user-list/userList.helpers';
 import UserCard from '~/components/user-card';
 import Pagination from '~/components/pagination';
 import Header from '~/components/header';

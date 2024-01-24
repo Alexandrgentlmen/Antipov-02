@@ -2,7 +2,8 @@ import { memo, useCallback, useEffect } from 'react';
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Bars } from 'react-loader-spinner';
 import styles from './UserAbout.module.scss';
-import { getParams } from './UserAbout.helper';
+
+import { getParams } from '~/App/user-about/UserAbout.helper';
 import Container from '~/components/container';
 import { useAppDispatch, useAppSelector } from '~/store/hooks';
 import Teammate from '~/components/teammate';

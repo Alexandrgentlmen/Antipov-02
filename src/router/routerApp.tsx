@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { memo } from 'react';
 import { ROUTES } from './routerPaths';
 import { RequireAuth } from '~/hoc/RequireAuth';
@@ -11,6 +11,7 @@ function RouterApp() {
   return (
     <>
       <Routes>
+        <Route path={'/'} element={<Navigate to={ROUTES.USERS_LIST} />} />
         <Route path={ROUTES.USERS_LIST} element={<UserList />} />
         <Route
           path={ROUTES.USER}
