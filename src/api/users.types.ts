@@ -23,11 +23,11 @@ export interface Support {
 
 //userResponse
 export interface UserResponse {
-  data: UserResponseData;
+  data: Data;
   support: Support;
 }
 
-export interface UserResponseData {
+export interface Data {
   id: number;
   email: string;
   first_name: string;

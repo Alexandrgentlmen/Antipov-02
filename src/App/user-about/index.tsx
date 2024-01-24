@@ -18,6 +18,7 @@ function UserAbout() {
   const userRequest = useAppSelector(
     (state) => state.usersList.fetchUserRequest,
   );
+  console.log('userRequest', userRequest);
   const { id } = useParams<{ id: string }>();
   const { id: userId } = getParams(id);
   useEffect(() => {
