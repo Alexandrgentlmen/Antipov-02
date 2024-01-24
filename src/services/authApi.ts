@@ -1,6 +1,6 @@
 import axiosInstance from '../api/instanceApi';
 
-const login = async (email, password) => {
+const login = async (email: string, password: string) => {
   return axiosInstance.post('/login', { email, password });
 };
 
